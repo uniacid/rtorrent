@@ -397,6 +397,7 @@ sudo -u $username chmod 755 /home/$username/ >/dev/null 2>&1
 echo $OK
 echo -n "Starting irssi/rtorrent for $username ... "
 sudo -u $username /usr/bin/screen -fa -d -m -s torrent /home/$username/rtorrent.cron >/dev/null 2>&1
+sudo -u $username /usr/bin/screen -fa -d -m -S irssi irssi
 mkdir /srv/rutorrent/conf/users/$username >/dev/null 2>&1
 echo $OK
 
