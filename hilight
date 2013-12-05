@@ -1,0 +1,20 @@
+#!/usr/bin/tclsh
+#file delete {*}[glob -nocomplain -dir . *.html]
+package require http
+proc hilite {file} {
+set fid [open $file r+]
+set code [read $fid]
+set query [http::formatQuery code $code lexar python style vim]
+set tftok [::http::geturl http://hilite.me/api -query $query]
+set fd [open ${file}.html w+]
+set data [http::data $tftok]
+set out [string map {"overflow:auto;width:auto;" "width:1000px;word-wrap:break-word;"} $data]
+puts $fd $out
+close $fd
+}
+set scripts [glob -nocomplain *]
+        foreach line [split $scripts] {
+                	puts "creating ${line}.html";
+        hilite [list $line]
+}
+

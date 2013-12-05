@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+	<server name="irc.network.com"
+		hostname="irc.server.com"
+		port="6667"
+		nickname="botnick"
+		identd="identd"
+		realname="the real name"
+		encoding="UTF-8" >
+			<channel channel="#channel_to_join" />
+	</server>
+	 <server name="irc.your-network.net"
+		hostname="irc.your-network.net" 
+		port="6667"
+		nickname="botnick"
+		identd="identd"
+		realname="the real name"
+		encoding="UTF-8" >
+			<channel channel="#channel_on_your_network" />
+	</server>
+	<relaygroup name="premessages"
+		format="&lt;${nickname}@${servername}/${channel}&gt;  ${message}"
+		ignore="^&lt;\S+&gt;  "
+		maxmessagebytes="342" >
+	<node server="irc.network.com"
+		channel="#channel_to_join"
+		input="true"
+		output="true"/>
+	<node server="irc.your-network.net"
+		channel="#channel_on_your_network"
+		input="false"
+		output="true" />
+	</relaygroup>
+</config>
+

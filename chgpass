@@ -1,0 +1,24 @@
+#!/bin/bash
+# used to change rtorrent htpasswd users passwords
+rndfile=`perl -le 'print map {(a..z,A..Z,0..9)[rand 62] } 0..pop' 15`
+htpasswd="/etc/httpd/conf.d/htpasswd"
+genpass=`perl -le 'print map {(a..z,A..Z,0..9)[rand 62] } 0..pop' 15`
+realm="rutorrent"
+OK=`echo -e "[ \e[0;32mOK\e[00m ]"`
+echo -n "Username: "
+read username
+cat ${htpasswd} |grep -v "^${username}" > /tmp/${rndfile}
+mv /tmp/${rndfile} $htpasswd
+echo -n "Password: (hit enter to generate a password) "
+read password
+        if [[ "$password" == "" ]]; then
+                echo "setting password to $genpass"
+                echo "$genpass" | (passwd --stdin $username >/dev/null 2>&1)
+                (echo -n "$username:$realm:" && echo -n "$username:$realm:$genpass" | md5sum | awk '{print $1}' ) >> $htpasswd
+        else
+                echo "using $password"
+                echo "$password" | (passwd --stdin $username >/dev/null 2>&1)
+                (echo -n "$username:$realm:" && echo -n "$username:$realm:$password" | md5sum | awk '{print $1}' ) >> $htpasswd
+        fi
+echo $OK
+
