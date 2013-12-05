@@ -52,8 +52,7 @@ mkdir -p /usr/share/GeoIP>/dev/null 2>&1
 mv GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat>/dev/null 2>&1
 echo $OK
 echo -n "Installing: perl-Digest::SHA1 ... "
-(echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan Digest::SHA1>/dev/null 2>&1
-(echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan Digest::SHA1>/dev/null 2>&1
+(echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan Digest::SHA1
 echo $OK
 
 #XMLRPC-C
