@@ -42,7 +42,7 @@ echo $OK
 echo -n "Installing: nano, bwm-ng, ifstat, rtorrent, libtorrent, rar, mediainfo and irssi-autodl perl modules ... "
 APT=`apt-get install -qq --force-yes -y bc sudo screen zip irssi unzip nano build-essential bwm-ng ifstat git subversion \
 	automake libtool libcppunit-dev libcurl4-openssl-dev libsigc++-2.0-dev \
-	unzip unrar curl libncurses5-dev dialog yasm apache2 php5 php5-cli \
+	unzip unrar curl libncurses5-dev yasm apache2 php5 php5-cli \
 	fontconfig libfontconfig1 libfontconfig1-dev rar unrar mediainfo php5-curl \
 	ttf-mscorefonts-installer liblocal-lib-perl libarchive-zip-perl libnet-ssleay-perl php5-geoip \
 	libhtml-parser-perl libxml-libxml-perl libjson-perl libjson-xs-perl libxml-libxslt-perl libapache2-mod-scgi >/dev/null 2>&1`
